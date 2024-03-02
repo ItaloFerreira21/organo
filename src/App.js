@@ -1,23 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Banner from "./componentes/Banner";
+import Formulario from "./componentes/Formulario";
+import Time from "./componentes/Time";
 
 function App() {
+  const time = [
+    {
+      nome: "Saiyajin",
+      corPrimaria: "#f2b691",
+      corSecundaria: "#f3c8ac",
+    },
+    {
+      nome: "Terráqueo",
+      corPrimaria: "#c4c93e",
+      corSecundaria: "#a8ac53",
+    },
+    {
+      nome: "Androide",
+      corPrimaria: "#f2b691",
+      corSecundaria: "#f3c8ac",
+    },
+    {
+      nome: "Namekuseijin",
+      corPrimaria: "#c4c93e",
+      corSecundaria: "#a8ac53",
+    },
+    {
+      nome: "Outros",
+      corPrimaria: "#f2b691",
+      corSecundaria: "#f3c8ac",
+    },
+  ];
+
+  const [personagens, setPersonagens] = useState([]);
+
+  const aoNovoPersonagemAdicionado = (personagem) => {
+    console.log(personagem);
+    setPersonagens([...personagens, personagem]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Banner />
+      <Formulario times={time.map(time => time.nome)}
+        aoPersonagemCadastrado={(personagem) =>
+          aoNovoPersonagemAdicionado(personagem)
+        }
+      />
+
+      {time.map(time => <Time 
+        key={time.nome} 
+        nome={time.nome} 
+        corPrimaria={time.corPrimaria} 
+        corSecundaria={time.corSecundaria}
+        personagens={personagens.filter(personagem => personagem.time === time.nome)} 
+      />)}
     </div>
   );
 }
