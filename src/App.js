@@ -42,19 +42,23 @@ function App() {
   return (
     <div className="App">
       <Banner />
-      <Formulario times={time.map(time => time.nome)}
+      <Formulario
+        times={time.map((time) => time.nome)}
         aoPersonagemCadastrado={(personagem) =>
           aoNovoPersonagemAdicionado(personagem)
         }
       />
 
-      {time.map(time => <Time 
-        key={time.nome} 
-        nome={time.nome} 
-        corPrimaria={time.corPrimaria} 
-        corSecundaria={time.corSecundaria}
-        personagens={personagens.filter(personagem => personagem.time === time.nome)} 
-      />)}
+      {time.map((time) => (
+        <Time
+          key={time.nome}
+          nome={time.nome}
+          corPrimaria={time.corPrimaria}
+          corSecundaria={time.corSecundaria}
+          // aqui se passa todos os personagens, não precisa filtrar ainda, filtra dentro de Time
+          personagens={personagens}
+        />
+      ))}
     </div>
   );
 }
