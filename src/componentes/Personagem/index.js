@@ -1,7 +1,7 @@
 import "./Personagem.css";
-import Personagem from './index';
+import Personagem from "./index";
 
-const personagem = ({nome, imagem, raca}) => {
+const personagem = ({ nome, imagem, raca }) => {
   return (
     <div className="personagemm">
       <div className="cabecalho">
